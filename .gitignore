@@ -1,0 +1,43 @@
+# front-end
+/node_modules/
+/dist/
+
+# java class
+*.class
+
+# package file
+# *.jar
+*.war
+*.ear
+
+# kdiff3
+*.orig
+
+# maven
+target/
+
+# Eclipse
+.settings/
+.project
+.classpath
+
+# IDEA
+.idea/
+/idea/
+*.ipr
+*.iml
+*.iws
+
+# temp file
+*.tmp
+*.log
+*.cache
+*.diff
+*.patch
+
+# system
+.DS_Store
+Thumbs.db
+
+# SVN ignore
+# *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo __pycache__ *.rej *~ #*# .#* .*.swp .DS_Store [Tt]humbs.db *.class *.settings *.classpath *.mymetadata *.project target
