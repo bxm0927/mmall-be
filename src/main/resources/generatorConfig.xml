@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+		"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
-<!-- mybatis-geelynote 插件的配置 -->
-
+<!-- MyBatis Generator 插件的配置 -->
 <generatorConfiguration>
 
 	<!-- 导入数据源属性配置 -->
@@ -53,8 +53,8 @@
 
         <!-- mapper 映射文件生成所在的目录 为每一个数据库的表生成对应的 SqlMap 文件 -->
 		<!--<sqlMapGenerator targetPackage="mappers" targetProject="mmall/src/main/resources">-->
-        <!--<sqlMapGenerator targetPackage="mappers" targetProject="./src/main/resources">-->
-        <sqlMapGenerator targetPackage="com.mmall.dao" targetProject="./src/main/java">
+        <!--<sqlMapGenerator targetPackage="com.mmall.dao" targetProject="./src/main/java">-->
+		<sqlMapGenerator targetPackage="mappers" targetProject="./src/main/resources">
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
 
