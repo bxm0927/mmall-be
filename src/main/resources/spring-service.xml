@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- 开启包扫描机制，扫描 service 包下所有使用注解的类，事务一般定义在 service 层 -->
+    <context:component-scan base-package="com.mmall.service" annotation-config="true"/>
+
+    <!--
+        配置声明式事务步骤(注解方式)：
+        1. 配置事务管理器
+        2. 启用事务注解，就可以在要使用的方法所在类上面添加注解 @Transactional，来实现声明式事务管理
+    -->
+
+    <!-- 1. 配置事务管理器 -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- 注入数据源 -->
+        <property name="dataSource" ref="dataSource"/>
+
+        <!-- 当提交失败时，是否回滚 -->
+        <property name="rollbackOnCommitFailure" value="true"/>
+    </bean>
+
+    <!-- 2. 启用事务注解 -->
+    <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
+
+</beans>

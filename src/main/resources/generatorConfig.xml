@@ -5,7 +5,7 @@
 <!-- MyBatis Generator 插件的配置 -->
 <generatorConfiguration>
 
-	<!-- 导入数据源属性配置 -->
+	<!-- 加载数据库配置文件 -->
 	<properties resource="datasource.properties"></properties>
 
 	<!-- 指定特定数据库的jdbc驱动jar包的位置 -->
