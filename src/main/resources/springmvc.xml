@@ -28,7 +28,7 @@
                 </property>
             </bean>
 
-            <!-- json 配置 -->
+            <!-- 利用 Jackson 来将响应类型序列化为 json -->
             <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
