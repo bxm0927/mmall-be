@@ -1,13 +1,5 @@
 package com.mmall.service.impl;
 
-import java.util.UUID;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Service;
-
 import com.mmall.common.Const;
 import com.mmall.common.ServerResponse;
 import com.mmall.common.ServerResponseCode;
@@ -16,6 +8,11 @@ import com.mmall.dao.UserMapper;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
 import com.mmall.util.MD5Util;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.UUID;
 
 @Service("iUserService")
 public class UserServiceImpl implements IUserService {
@@ -25,7 +22,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ServerResponse<String> checkValid(String str, String type) {
-
         // 如果传入了检验类型 type
         if (StringUtils.isNotBlank(type)) {
             // 校验用户名是否存在
@@ -54,7 +50,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ServerResponse<User> login(String username, String password) {
-
         // 校验用户名是否存在
         ServerResponse<String> validResponse = this.checkValid(username, Const.LoginType.USERNAME);
         if (validResponse.isSuccess()) {
@@ -77,7 +72,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ServerResponse<String> register(User user) {
-
         // 校验用户名是否存在
         ServerResponse<String> validResponse = this.checkValid(user.getUsername(), Const.LoginType.USERNAME);
         if (!validResponse.isSuccess()) {
@@ -105,7 +99,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ServerResponse<String> forgetGetQuestion(String username) {
-
         // 校验用户名是否存在
         ServerResponse<String> validResponse = this.checkValid(username, Const.LoginType.USERNAME);
         if (validResponse.isSuccess()) {
@@ -123,7 +116,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ServerResponse<String> forgetCheckAnswer(String username, String question, String answer) {
-
         int rows = userMapper.forgetCheckAnswer(username, question, answer);
         if (rows > 0) {
             // 正确的返回值里面有一个token，用于修改密码之后的重置密码，传递给下一个接口
@@ -139,7 +131,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ServerResponse<String> forgetResetPassword(String username, String passwordNew, String forgetToken) {
-
         // 校验用户名是否存在
         ServerResponse<String> validResponse = this.checkValid(username, Const.LoginType.USERNAME);
         if (validResponse.isSuccess()) {
@@ -174,7 +165,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ServerResponse<String> resetPassword(User user, String passwordOld, String passwordNew) {
-
         // 校验旧密码是否正确，带上 id 查询是为了防止横向越权漏洞
         String safePassword = MD5Util.MD5EncodeUtf8(passwordOld);
         int rows = userMapper.checkPassword(user.getId(), safePassword);
@@ -194,7 +184,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ServerResponse<User> updateInformation(User user) {
-
         // 校验邮箱是否已被他人占用
         int rows = userMapper.checkEmailById(user.getId(), user.getEmail());
         if (rows > 0) {
@@ -215,7 +204,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ServerResponse<User> getInformation(Integer id) {
-
         User user = userMapper.selectByPrimaryKey(id);
         if (user == null) {
             return ServerResponse.createByErrorMsg("当前用户不存在");
@@ -229,8 +217,7 @@ public class UserServiceImpl implements IUserService {
     // ************************** 上面是前台接口 portal ↑ 下面是后台接口 backend ↓ **************************//
 
     @Override
-    public ServerResponse<User> checkAdminRole(User user) {
-
+    public ServerResponse<String> checkAdminRole(User user) {
         if (Const.Role.ROLE_ADMIN == user.getRole()) {
             return ServerResponse.createBySuccess();
         }
