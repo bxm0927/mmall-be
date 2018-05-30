@@ -33,23 +33,19 @@ public class FileServiceImpl implements IFileService {
         // 如果上传目录不存在，则创建目录
         File fileDir = new File(path);
         if (!fileDir.exists()) {
-            // 赋予写权限
-            if (fileDir.setWritable(true)) {
-                if (fileDir.mkdirs()) {
-                    logger.info("创建多级目录成功");
-                }
-            }
+            fileDir.setWritable(true); // 赋予写权限
+            fileDir.mkdirs(); // 创建多级目录成功
         }
 
         // 创建目标文件，然后将收到的文件传输（复制）到给定的目标文件
         File targetFile = new File(path, newFileName);
         try {
             file.transferTo(targetFile);
-            logger.info("文件已经上传到本地成功！");
+            logger.info("文件已经上传到本地！");
 
             // 将文件上传到 FTP 文件服务器上，然后删除本地的文件
             if (FTPUtils.uploadFile2FTP(Lists.newArrayList(targetFile))) {
-                logger.info("文件已经上传到 FTP 服务器成功！");
+                logger.info("文件上传到 FTP 服务器成功！");
 
                 if (targetFile.delete()) {
                     logger.info("本地文件已删除");
@@ -57,7 +53,6 @@ public class FileServiceImpl implements IFileService {
             } else {
                 logger.info("文件已经上传到 FTP 服务器失败~");
             }
-
         } catch (IllegalStateException | IOException e) {
             logger.error("文件上传异常", e);
             return null;

@@ -10,6 +10,7 @@ import com.mmall.pojo.User;
 import com.mmall.service.IFileService;
 import com.mmall.service.IProductService;
 import com.mmall.service.IUserService;
+import com.mmall.util.PropertiesUtil;
 import com.mmall.vo.ProductDetailVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -201,13 +202,12 @@ public class ProductManageController {
         // 验证是否是管理员
         if (iUserService.checkAdminRole(sessionUser).isSuccess()) {
             // SpringMVC 文件上传相关逻辑
-            String path = request.getSession().getServletContext().getRealPath("upload"); // webapp/upload
+            String path = request.getSession().getServletContext().getRealPath("upload");
             String targetFileName = iFileService.uploadFile(file, path);
 
             // 构建图片地址
-            // TODO 文件传不到 FTP 上去 - -
-            // String imageUrl = PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName;
-            String imageUrl = path + targetFileName;
+            // String imageUrl = path + targetFileName; // Tomcat
+            String imageUrl = PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName;
 
             Map<String, String> map = Maps.newHashMap();
             map.put("imageUri", targetFileName);
@@ -265,8 +265,8 @@ public class ProductManageController {
             }
 
             // 构建图片地址
-            // String imageUrl = PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName;
-            String imageUrl = path + targetFileName;
+            // String imageUrl = path + targetFileName; // Tomcat
+            String imageUrl = PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName;
 
             map.put("success", true);
             map.put("msg", "上传成功");

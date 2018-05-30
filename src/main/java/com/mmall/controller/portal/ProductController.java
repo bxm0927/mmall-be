@@ -25,7 +25,7 @@ public class ProductController {
     private IProductService iProductService;
 
     // 商品详情
-    @RequestMapping(value = "detail.do", method = RequestMethod.POST)
+    @RequestMapping(value = "detail.do")
     @ResponseBody
     public ServerResponse<ProductDetailVo> detail(Integer productId) {
 
@@ -42,7 +42,7 @@ public class ProductController {
      * @param orderBy    排序规则，price_asc、price_desc
      * @return json
      */
-    @RequestMapping(value = "list.do", method = RequestMethod.POST)
+    @RequestMapping(value = "list.do")
     @ResponseBody
     public ServerResponse<PageInfo> list(
             @RequestParam(value = "categoryId", required = false) Integer categoryId,
