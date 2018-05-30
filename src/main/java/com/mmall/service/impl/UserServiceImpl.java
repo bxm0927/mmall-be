@@ -214,7 +214,7 @@ public class UserServiceImpl implements IUserService {
         return ServerResponse.createBySuccessData(user);
     }
 
-    // ************************** 上面是前台接口 portal ↑ 下面是后台接口 backend ↓ **************************//
+    // 上面是前台接口 portal，下面是后台接口 backend
 
     @Override
     public ServerResponse<String> checkAdminRole(User user) {

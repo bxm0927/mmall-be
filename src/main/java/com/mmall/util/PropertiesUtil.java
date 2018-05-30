@@ -20,7 +20,8 @@ public class PropertiesUtil {
     // 执行顺序：静态变量 -> 静态代码块 -> 静态方法 -> 成员变量 -> 成员方法 -> 构造代码块 -> 构造方法
     // 加载配置文件
     static {
-        String fileName = "mmall.properties"; // 配置文件
+        String fileName = "properties/mmall.properties"; // 配置文件
+        // String fileName = "properties/*.properties"; // 配置文件
         props = new Properties();
         try {
             props.load(new InputStreamReader(PropertiesUtil.class.getClassLoader().getResourceAsStream(fileName), "UTF-8"));
@@ -36,7 +37,6 @@ public class PropertiesUtil {
      * @return 值
      */
     public static String getProperty(String key) {
-
         String value = props.getProperty(key.trim());
         if (StringUtils.isBlank(value)) {
             return null;
@@ -47,12 +47,11 @@ public class PropertiesUtil {
     /**
      * 通过配置文件中的 key 获取 value，如果 key 为空，则返回一个默认值
      *
-     * @param key 键
+     * @param key          键
      * @param defaultValue 默认值
      * @return 值
      */
     public static String getProperty(String key, String defaultValue) {
-
         String value = props.getProperty(key.trim());
         if (StringUtils.isBlank(value)) {
             value = defaultValue;

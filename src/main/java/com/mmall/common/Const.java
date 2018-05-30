@@ -24,16 +24,16 @@ public class Const {
         int ROLE_ADMIN = 1; // 管理员
     }
 
-    // 商品状态
+    // 商品销售状态
     public interface ProductStatus {
         int ON_SALE = 1; // 在售
         int OFF_SALE = 2; // 下架
         int DELETE = 3; // 删除
     }
 
-    // 商品排序类型 - 按价格降序、按价格升序
+    // 商品排序规则，定义一个Set集合来存储
     public interface ProductListOrderBy {
-        Set<String> PRICE_ASC_DESC = Sets.newHashSet("price_desc", "price_asc");
+        Set<String> PRICE_ASC_DESC = Sets.newHashSet("price_desc", "price_asc"); // 按价格降序、按价格升序
     }
 
 }

@@ -1,5 +1,8 @@
 package com.mmall.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.security.MessageDigest;
 
 /**
@@ -8,13 +11,16 @@ import java.security.MessageDigest;
  */
 public class MD5Util {
 
+    private static Logger logger = LoggerFactory.getLogger(PropertiesUtil.class);
+
     private static final String hexDigits[] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
 
     private static String byteArrayToHexString(byte b[]) {
 
-        StringBuffer resultSb = new StringBuffer();
-        for (int i = 0; i < b.length; i++)
+        StringBuilder resultSb = new StringBuilder();
+        for (int i = 0; i < b.length; i++) {
             resultSb.append(byteToHexString(b[i]));
+        }
 
         return resultSb.toString();
     }
@@ -47,7 +53,8 @@ public class MD5Util {
                 resultString = byteArrayToHexString(md.digest(resultString.getBytes()));
             else
                 resultString = byteArrayToHexString(md.digest(resultString.getBytes(charsetname)));
-        } catch (Exception exception) {
+        } catch (Exception e) {
+            logger.error("MD5 加密异常", e);
         }
 
         return resultString.toUpperCase();

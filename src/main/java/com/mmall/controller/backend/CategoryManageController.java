@@ -107,7 +107,7 @@ public class CategoryManageController {
     }
 
     /**
-     * 递归获取子节点编号，即返回所有后代节点
+     * 递归获取子节点编号，即返回所有后代节点（包括自己）
      *
      * @param categoryId 品类id
      * @param session    session 会话
