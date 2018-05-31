@@ -36,4 +36,13 @@ public class Const {
         Set<String> PRICE_ASC_DESC = Sets.newHashSet("price_desc", "price_asc"); // 按价格降序、按价格升序
     }
 
+    // 购物车商品状态
+    public interface Cart {
+        int CHECKED = 1; // 即购物车选中状态
+        int UN_CHECKED = 0; // 购物车中未选中状态
+
+        String LIMIT_NUM_FAIL = "LIMIT_NUM_FAIL";
+        String LIMIT_NUM_SUCCESS = "LIMIT_NUM_SUCCESS";
+    }
+
 }

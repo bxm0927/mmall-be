@@ -46,7 +46,7 @@ public class CategoryManageController {
         // 验证是否登录，如果没有，则强制登录（status=10）
         User sessionUser = (User) session.getAttribute(Const.CURRENT_USER);
         if (sessionUser == null) {
-            return ServerResponse.createByErrorCodeMsg(ServerResponseCode.NEED_LOGIN.getCode(), "用户未登录，请先登录");
+            return ServerResponse.createByErrorCodeMsg(ServerResponseCode.NEED_LOGIN.getCode(), ServerResponseCode.NEED_LOGIN.getDesc());
         }
 
         // 验证是否是管理员
@@ -71,7 +71,7 @@ public class CategoryManageController {
         // 验证是否登录，如果没有，则强制登录（status=10）
         User sessionUser = (User) session.getAttribute(Const.CURRENT_USER);
         if (sessionUser == null) {
-            return ServerResponse.createByErrorCodeMsg(ServerResponseCode.NEED_LOGIN.getCode(), "用户未登录，请先登录");
+            return ServerResponse.createByErrorCodeMsg(ServerResponseCode.NEED_LOGIN.getCode(), ServerResponseCode.NEED_LOGIN.getDesc());
         }
 
         // 验证是否是管理员
@@ -95,7 +95,7 @@ public class CategoryManageController {
         // 验证是否登录，如果没有，则强制登录（status=10）
         User sessionUser = (User) session.getAttribute(Const.CURRENT_USER);
         if (sessionUser == null) {
-            return ServerResponse.createByErrorCodeMsg(ServerResponseCode.NEED_LOGIN.getCode(), "用户未登录，请先登录");
+            return ServerResponse.createByErrorCodeMsg(ServerResponseCode.NEED_LOGIN.getCode(), ServerResponseCode.NEED_LOGIN.getDesc());
         }
 
         // 验证是否是管理员
@@ -119,7 +119,7 @@ public class CategoryManageController {
         // 验证是否登录，如果没有，则强制登录（status=10）
         User sessionUser = (User) session.getAttribute(Const.CURRENT_USER);
         if (sessionUser == null) {
-            return ServerResponse.createByErrorCodeMsg(ServerResponseCode.NEED_LOGIN.getCode(), "用户未登录，请先登录");
+            return ServerResponse.createByErrorCodeMsg(ServerResponseCode.NEED_LOGIN.getCode(), ServerResponseCode.NEED_LOGIN.getDesc());
         }
 
         // 验证是否是管理员
