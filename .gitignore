@@ -1,6 +1,7 @@
 # front-end
 /node_modules/
 /dist/
+npm-debug.log
 
 # java class
 *.class
@@ -20,6 +21,7 @@ target/
 .settings/
 .project
 .classpath
+.idea/
 
 # IDEA
 .idea/
